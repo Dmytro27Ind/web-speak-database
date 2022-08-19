@@ -1,5 +1,5 @@
 # web-speak-database
-This is the database for the **Web-Speak** project. The goal was to improve my knowledge in PostgreSQL. In the README.md file, you can also find diagrams for the database.
+This is the database script for the **Web-Speak** project. The goal was to improve my knowledge in PostgreSQL. In the `README.md` file, you can also find diagrams for the database.
 
 ## Technologies
 - **SQL**
