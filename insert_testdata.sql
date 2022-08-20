@@ -3,6 +3,7 @@
 SELECT * FROM person;
 SELECT * FROM language_code;
 SELECT * FROM post;
+SELECT * FROM repost;
 
 INSERT INTO language_code
 VALUES
@@ -20,3 +21,12 @@ VALUES
 (1, 'My first post on Web-Speak', 'img_path'),
 (1, 'My second post. Hello', 'img_path'),
 (2, 'Artem. First post', 'img_path');
+
+INSERT INTO repost(fk_person_id, fk_post_id)
+VALUES
+(1, 3),
+(2, 1),
+(2, 2),
+(2, 3),
+(3, 1),
+(3, 2);

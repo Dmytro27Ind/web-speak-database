@@ -1,4 +1,5 @@
 -- Active: 1660946044762@@127.0.0.1@5432@webspeak
+DROP TABLE IF EXISTS repost;
 DROP TABLE IF EXISTS post;
 DROP TABLE IF EXISTS person;
 DROP TABLE IF EXISTS language_code;
@@ -35,8 +36,20 @@ CREATE TABLE post
     content         varchar(280),
     img_path        varchar(255),
     likes           int             NOT NULL    DEFAULT 0,
-    post_date       TIMESTAMPTZ     NOT NULL    DEFAULT NOW(),
+    created_on      TIMESTAMPTZ     NOT NULL    DEFAULT NOW(),
 
+    CONSTRAINT PK_post_post_id PRIMARY KEY(post_id),
     CONSTRAINT CHK_post_likes CHECK (likes >= 0),
     CONSTRAINT FK_post_person_id FOREIGN KEY(fk_person_id) REFERENCES person(person_id)
+);
+
+CREATE TABLE repost
+(
+    fk_person_id    int             NOT NULL,
+    fk_post_id      int             NOT NULL,
+    created_on      TIMESTAMPTZ     NOT NULL    DEFAULT NOW(),
+
+    CONSTRAINT PK_repost PRIMARY KEY (fk_person_id, fk_post_id),
+    CONSTRAINT FK_repost_person_id FOREIGN KEY(fk_person_id) REFERENCES person(person_id),
+    CONSTRAINT FK_repost_post_id FOREIGN KEY(fk_post_id) REFERENCES post(post_id)
 );
