@@ -1,4 +1,5 @@
 -- Active: 1660946044762@@127.0.0.1@5432@webspeak
+DROP TABLE IF EXISTS comments;
 DROP TABLE IF EXISTS repost;
 DROP TABLE IF EXISTS post;
 DROP TABLE IF EXISTS person;
@@ -52,4 +53,16 @@ CREATE TABLE repost
     CONSTRAINT PK_repost PRIMARY KEY (fk_person_id, fk_post_id),
     CONSTRAINT FK_repost_person_id FOREIGN KEY(fk_person_id) REFERENCES person(person_id),
     CONSTRAINT FK_repost_post_id FOREIGN KEY(fk_post_id) REFERENCES post(post_id)
+);
+
+CREATE TABLE comments
+(
+    commented_by    int             NOT NULL,
+    fk_post_id      int             NOT NULL,
+    content         varchar(150)    NOT NULL,
+    created_on      TIMESTAMPTZ     NOT NULL    DEFAULT NOW(),
+
+    CONSTRAINT PK_comments PRIMARY KEY (commented_by, fk_post_id),
+    CONSTRAINT FK_comments_commented_by FOREIGN KEY(commented_by) REFERENCES person(person_id),
+    CONSTRAINT FK_comments_post_id FOREIGN KEY(fk_post_id) REFERENCES post(post_id)
 );

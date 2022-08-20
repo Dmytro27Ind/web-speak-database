@@ -24,3 +24,10 @@ VALUES
 (2, 3),
 (3, 1),
 (3, 2);
+
+INSERT INTO comments(commented_by, fk_post_id, content)
+VALUES
+(1, 1, 'This is my post'),
+(1, 2, 'This is too my'),
+(1, 3, 'Good'),
+(3, 3, 'Beautiful !!!');
